@@ -1,0 +1,15 @@
+// Workshop-wide attributes
+// These are replaced at runtime by Showroom with actual deployment values.
+
+:openshift_console_url: {openshift_console_url}
+:openshift_api_url: {openshift_api_url}
+:user: {user}
+:password: {password}
+:devhub_url: {devhub_url}
+:devspaces_url: {devspaces_url}
+:gitea_url: {gitea_url}
+:gitea_user: {gitea_user}
+:gitea_password: {gitea_password}
+:argocd_url: {argocd_url}
+:postcard_app_url: {postcard_app_url}
+:ocp_version: 4.21

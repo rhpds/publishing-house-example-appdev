@@ -1,0 +1,26 @@
+{{- if .Values.labs.gitops.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.tenant.name }}-postcard-gitops
+  namespace: {{ .Values.argocd.namespace }}
+  labels:
+    {{- include "tenant.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .Values.argocd.project }}
+  source:
+    repoURL: https://{{ .Values.gitea.host }}/{{ .Values.tenant.user.name }}/postcard-generator.git
+    targetRevision: main
+    path: k8s
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ include "tenant.namespace" . }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+{{- end }}

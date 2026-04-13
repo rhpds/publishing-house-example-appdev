@@ -1,0 +1,198 @@
+= Lab 1: Stamp your passport -- Scaffold with Developer Hub
+include::partial$_attributes.adoc[]
+:source-highlighter: rouge
+:toc: macro
+:toclevels: 1
+
+You want a running application on OpenShift. Not tomorrow. Not after writing YAML. Right now.
+
+Red Hat Developer Hub makes that possible. It provides golden path templates, pre-built starting points that include application code, CI/CD pipelines, deployment manifests, and GitOps configuration. You pick a template, fill in a short form, and the platform does the rest.
+
+In this lab, you will scaffold the Postcard Generator from a golden path template and have it running on OpenShift in minutes.
+
+== Learning objectives
+
+By the end of this lab, you will be able to:
+
+* Navigate the Red Hat Developer Hub software catalog and template gallery
+* Scaffold a new application from a golden path template
+* Verify that the scaffolded app is deployed and running on OpenShift
+* Understand how platform teams use templates to encode best practices
+
+== Exercise 1: Explore Developer Hub
+
+Developer Hub is where your organization's platform team publishes golden path templates. Think of it as an app store for internal applications, but instead of downloading apps, you scaffold new ones from proven patterns.
+
+. Open Red Hat Developer Hub in your browser:
++
+{devhub_url}
+
+. Sign in by clicking *Log in with OpenShift* and using your lab credentials:
++
+* Username: `{user}`
+* Password: `{password}`
+
+. After signing in, you land on the Developer Hub home page. Click *Catalog* in the left navigation.
++
+The Software Catalog shows components already registered on this platform. Each entry represents an application, service, or resource that the platform team has onboarded. Browse the list to get a feel for how organizations inventory their software.
+
+. Now click *Create* in the left navigation.
++
+This is the template gallery. Each card represents a golden path template, a pre-configured starting point for a specific type of application. Templates are created by platform teams and consumed by developers.
+
+. Find the *Postcard Generator* template card. Notice the description, tags, and owner information.
++
+This template will create everything you need: a Git repository with the application source code, a Tekton pipeline for CI/CD, Kubernetes deployment manifests, and an Argo CD application for GitOps.
+
+// TODO: Add screenshot of Developer Hub template gallery
+image::devhub-template-gallery.png[Developer Hub template gallery showing the Postcard Generator golden path template,link=self,window=blank,width=700,title="Developer Hub template gallery"]
+
+=== Verify
+
+* You are signed into Developer Hub
+* You can see the Software Catalog with existing components
+* You can see the Postcard Generator template in the Create section
+
+== Exercise 2: Scaffold the Postcard Generator
+
+Time to create your app. The template handles everything, you just fill in a few fields.
+
+. Click *Choose* on the Postcard Generator template.
+
+. Fill in the scaffolding form:
++
+* *Project name*: `postcard-generator`
+* *Owner*: Select your user from the dropdown
+* *Namespace*: Your pre-assigned OpenShift namespace (shown in the dropdown)
+
+. Click *Next* to review the summary.
++
+Take a moment to read what will be created:
++
+* A Git repository in Gitea with the full application source
+* A Tekton Pipeline for building and deploying the app
+* Kubernetes manifests (Deployment, Service, Route)
+* An Argo CD Application for GitOps management
+
+. Click *Create* and watch the progress.
++
+Each step executes in sequence:
+
+* Repository created in Gitea
+* Source code and CI/CD configuration committed
+* OpenShift resources applied
+* Application deployment triggered
++
+This takes about 60 seconds.
+
+. Once all steps show green checkmarks, click *Open Component* to view your new app in the Developer Hub catalog.
+
+// TODO: Add screenshot of scaffolding progress
+image::devhub-scaffold-progress.png[Developer Hub showing scaffold progress with all steps completed,link=self,window=blank,width=700,title="Scaffolding complete"]
+
+=== Verify
+
+* All scaffolding steps completed successfully (green checkmarks)
+* The Postcard Generator appears as a new component in the Software Catalog
+
+== Exercise 3: Tour your new app
+
+The scaffolding created your app and deployed it to OpenShift. Let's see it running.
+
+. From the component page in Developer Hub, look for the *OpenShift* or *Topology* link. Click it to open the OpenShift developer topology view in a new tab.
++
+Alternatively, open the OpenShift Console directly:
++
+{openshift_console_url}
++
+Sign in with `{user}` / `{password}`, switch to the *Developer* perspective, and select your namespace from the project dropdown.
+
+. In the Topology view, you should see the Postcard Generator deployment represented as a node.
++
+Identify the key resources:
++
+* *Deployment* -- the running application
+* *Pod* -- the container instance
+* *Service* -- internal networking
+* *Route* -- the external URL
+
+. Click the *Open URL* icon (the small arrow in the top-right corner of the deployment node) to open the Postcard Generator in a new browser tab.
++
+Alternatively, navigate directly to:
++
+{postcard_app_url}
+
+. You should see the Postcard Generator interface. Enter your name in the *From* field.
+
+. Click *Generate Postcard*.
++
+A random destination is selected and a retro-styled postcard appears with:
++
+* A colorful travel-poster design
+* The destination name and a fun tagline
+* An interactive map pinning the location
+* Your name as the sender
+
+. Click *Generate Postcard* a few more times. Each postcard picks a different destination with its own color scheme and tagline.
+
+// TODO: Add screenshot of the running Postcard Generator
+image::postcard-app-running.png[The Postcard Generator showing a styled postcard from Reykjavik with map and tagline,link=self,window=blank,width=700,title="Your first postcard"]
+
+[start=7]
+. Return to the OpenShift Console and click on the Postcard Generator deployment in the Topology view. In the details panel, explore:
++
+* *Container image* -- built and pushed by the scaffold pipeline
+* *Environment variables* -- configured by the template
+* *Resource limits* -- set by the golden path defaults
++
+All of this was configured automatically by the template. No YAML editing required.
+
+=== Verify
+
+Run the following in your terminal to confirm the deployment is healthy:
+
+[source,role="execute"]
+----
+oc get deployment postcard-generator -n {user}-postcard-generator
+----
+
+Expected output:
+
+----
+NAME                  READY   UP-TO-DATE   AVAILABLE   AGE
+postcard-generator    1/1     1            1           5m
+----
+
+* READY shows 1/1
+* The Postcard Generator UI loads in your browser
+* You successfully generated at least one postcard
+
+== Learning outcomes
+
+By completing this lab, you should now understand:
+
+* ✓ How Developer Hub provides a self-service catalog for scaffolding new applications
+* ✓ How golden path templates encode CI/CD, deployment, and GitOps configuration so developers do not have to
+* ✓ How platform teams create guardrails by controlling the templates, while developers move fast by consuming them
+* ✓ That going from "I want an app" to "here it is, running" takes minutes on OpenShift, not days
+
+== Module summary
+
+You just scaffolded the Postcard Generator from a golden path template and had it running on OpenShift in minutes. No Dockerfiles. No pipeline YAML. No deployment manifests. The template handled all of it.
+
+*What you accomplished:*
+
+* Browsed the Developer Hub software catalog and template gallery
+* Scaffolded a complete application with one form
+* Verified the app running on OpenShift with a live postcard
+* Explored the deployment resources created by the template
+
+*Why this matters:*
+
+* Developer Hub eliminates the blank-repo problem. Developers start from a proven template, not from scratch.
+* Golden path templates are how platform teams scale guardrails without adding friction.
+* The same template that created your app also set up its CI/CD pipeline and GitOps configuration, ready for the next labs.
+
+*Next steps:*
+
+In Lab 2, you will open the Postcard Generator source code in OpenShift Dev Spaces and make changes that appear instantly, no rebuild, no redeploy.

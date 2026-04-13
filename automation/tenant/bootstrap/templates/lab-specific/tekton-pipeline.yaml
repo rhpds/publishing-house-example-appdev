@@ -1,0 +1,83 @@
+{{- if .Values.labs.pipelines.enabled }}
+apiVersion: tekton.dev/v1
+kind: Pipeline
+metadata:
+  name: postcard-generator-build
+  namespace: {{ include "tenant.namespace" . }}
+  labels:
+    {{- include "tenant.labels" . | nindent 4 }}
+spec:
+  params:
+    - name: git-url
+      type: string
+      description: Git repository URL
+    - name: git-revision
+      type: string
+      default: main
+      description: Git revision to build
+    - name: image-name
+      type: string
+      description: Target image name including registry
+  workspaces:
+    - name: source
+    - name: docker-credentials
+  tasks:
+    - name: git-clone
+      taskRef:
+        name: git-clone
+        kind: ClusterTask
+      params:
+        - name: url
+          value: $(params.git-url)
+        - name: revision
+          value: $(params.git-revision)
+      workspaces:
+        - name: output
+          workspace: source
+
+    - name: build-image
+      taskRef:
+        name: buildah
+        kind: ClusterTask
+      runAfter:
+        - git-clone
+      params:
+        - name: IMAGE
+          value: $(params.image-name)
+        - name: TLSVERIFY
+          value: "false"
+      workspaces:
+        - name: source
+          workspace: source
+        - name: dockerconfig
+          workspace: docker-credentials
+
+    - name: deploy
+      taskRef:
+        name: openshift-client
+        kind: ClusterTask
+      runAfter:
+        - build-image
+      params:
+        - name: SCRIPT
+          value: |
+            oc set image deployment/postcard-generator \
+              postcard-generator=$(params.image-name) \
+              -n {{ include "tenant.namespace" . }}
+            oc rollout status deployment/postcard-generator \
+              -n {{ include "tenant.namespace" . }} --timeout=120s
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: postcard-pipeline-workspace
+  namespace: {{ include "tenant.namespace" . }}
+  labels:
+    {{- include "tenant.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 1Gi
+{{- end }}

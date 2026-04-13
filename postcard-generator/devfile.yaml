@@ -1,0 +1,55 @@
+schemaVersion: 2.2.2
+metadata:
+  name: postcard-generator
+  version: 1.0.0
+  displayName: Postcard Generator
+  description: Retro travel postcard generator built with Flask
+  language: Python
+  projectType: Python
+
+components:
+  - name: python
+    container:
+      image: registry.access.redhat.com/ubi9/python-311:latest
+      mountSources: true
+      memoryLimit: 512Mi
+      endpoints:
+        - name: flask
+          targetPort: 5000
+          exposure: public
+          protocol: https
+      env:
+        - name: FLASK_APP
+          value: app.main:create_app()
+        - name: FLASK_DEBUG
+          value: "1"
+
+commands:
+  - id: install-dependencies
+    exec:
+      component: python
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: pip install -r requirements.txt
+      group:
+        kind: build
+        isDefault: true
+
+  - id: run
+    exec:
+      component: python
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: flask --app app.main:create_app run --host 0.0.0.0 --port 5000
+      group:
+        kind: run
+        isDefault: true
+
+  - id: debug
+    exec:
+      component: python
+      workingDir: ${PROJECT_SOURCE}
+      commandLine: >
+        python -m debugpy --listen 0.0.0.0:5678
+        -m flask --app app.main:create_app run --host 0.0.0.0 --port 5000 --no-reload
+      group:
+        kind: debug
+        isDefault: true

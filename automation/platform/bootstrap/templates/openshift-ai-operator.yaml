@@ -1,0 +1,33 @@
+{{- if .Values.operators.openshiftAI.enabled }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: redhat-ods-operator
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: rhods-operator-group
+  namespace: redhat-ods-operator
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec: {}
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: rhods-operator
+  namespace: openshift-operators
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec:
+  channel: {{ .Values.operators.openshiftAI.channel }}
+  installPlanApproval: Automatic
+  name: rhods-operator
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: {{ .Values.operators.openshiftAI.startingCSV }}
+{{- end }}

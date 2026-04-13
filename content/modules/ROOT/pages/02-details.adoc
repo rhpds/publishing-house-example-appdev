@@ -1,0 +1,112 @@
+= Workshop details
+include::partial$_attributes.adoc[]
+:toc:
+:toc-placement: preamble
+:icons: font
+
+== Timing and schedule
+
+=== Full workshop (100 minutes)
+
+* *Lab 1*: Stamp your passport -- Scaffold with Developer Hub (20 minutes)
+* *Lab 2*: Rewrite the postcard -- Live coding with Dev Spaces (20 minutes)
+* *Lab 3*: Ship it -- Build and deploy with Pipelines (20 minutes)
+* *Lab 4*: Steady state -- GitOps and drift control (20 minutes)
+* *Lab 5*: Dear AI -- Smart postcards with OpenShift AI (20 minutes)
+
+=== Single lab (20 minutes)
+
+Pick any individual lab. Each one is self-contained with its own pre-provisioned environment.
+
+== Technical requirements
+
+=== Software versions
+
+* Red Hat OpenShift Container Platform {ocp_version}
+* Red Hat Developer Hub (RHDH)
+* Red Hat OpenShift Dev Spaces
+* Red Hat OpenShift Pipelines (Tekton)
+* Red Hat OpenShift GitOps (Argo CD)
+* Red Hat OpenShift AI
+* Web browser (Chrome or Firefox recommended)
+
+=== Environment access
+
+Everything is pre-provisioned. You do not need to install anything locally.
+
+* Red Hat OpenShift cluster (provided)
+* Red Hat Developer Hub instance (provided)
+* OpenShift Dev Spaces workspace (provided)
+* Gitea Git server with your repositories (provided)
+* Argo CD instance (provided)
+
+=== Network requirements
+
+* Internet connectivity
+* Access to the lab environment URLs (provided at lab start)
+
+== Environment setup
+
+=== Your credentials
+
+* OpenShift Console: {openshift_console_url}
+* Username: `{user}`
+* Password: `{password}`
+* Gitea: {gitea_url} (same credentials)
+* Developer Hub: {devhub_url} (login via OpenShift)
+* Dev Spaces: {devspaces_url} (login via OpenShift)
+* Argo CD: {argocd_url} (login via OpenShift)
+
+=== Pre-provisioned for you
+
+Your lab environment includes:
+
+* A dedicated OpenShift namespace
+* A Gitea repository with the Postcard Generator source code
+* A golden path template registered in Developer Hub
+* A Tekton pipeline configured and ready to trigger
+* An Argo CD application pointing to your deployment manifests
+* An AI model-as-a-service endpoint with credentials stored as a Kubernetes Secret
+
+No setup steps are required. You are ready to start any lab immediately.
+
+== Products featured
+
+[cols="1,2",options="header"]
+|===
+| Product | Role in these labs
+
+| Red Hat Developer Hub
+| Scaffold new apps from golden path templates (Lab 1)
+
+| Red Hat OpenShift Dev Spaces
+| Cloud-hosted IDE with live reload for inner loop development (Lab 2)
+
+| Red Hat OpenShift Pipelines
+| Kubernetes-native CI/CD triggered by Git push (Lab 3)
+
+| Red Hat OpenShift GitOps
+| Argo CD for continuous deployment and drift detection (Lab 4)
+
+| Red Hat OpenShift AI
+| Model-as-a-service for AI integration (Lab 5)
+|===
+
+== Follow-up resources
+
+=== Next steps
+
+* link:https://developers.redhat.com/developer-sandbox[Red Hat Developer Sandbox^] -- Free OpenShift environment to keep experimenting
+* link:https://developers.redhat.com/learn[Red Hat Developer Learning Portal^] -- Hands-on tutorials and learning paths
+* link:https://docs.redhat.com/en/documentation/red_hat_openshift_container_platform/{ocp_version}[OpenShift Documentation^] -- Official product documentation
+
+=== Training and certification
+
+* *DO188* -- Red Hat OpenShift Development I: Introduction to Containers with Podman
+* *DO288* -- Red Hat OpenShift Developer II: Building Kubernetes Applications
+* *DO378* -- Red Hat Cloud-native Microservices Development with Quarkus
+
+== Authors and contributors
+
+*Primary Author*: Red Hat Technical Marketing
+*Last Updated*: April 2026

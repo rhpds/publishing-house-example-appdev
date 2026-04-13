@@ -1,0 +1,33 @@
+{{- if .Values.operators.devspaces.enabled }}
+---
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: openshift-devspaces
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+---
+apiVersion: operators.coreos.com/v1
+kind: OperatorGroup
+metadata:
+  name: devspaces-operator-group
+  namespace: openshift-devspaces
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec: {}
+---
+apiVersion: operators.coreos.com/v1alpha1
+kind: Subscription
+metadata:
+  name: devspaces
+  namespace: openshift-operators
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec:
+  channel: {{ .Values.operators.devspaces.channel }}
+  installPlanApproval: Automatic
+  name: devspaces
+  source: redhat-operators
+  sourceNamespace: openshift-marketplace
+  startingCSV: {{ .Values.operators.devspaces.startingCSV }}
+{{- end }}

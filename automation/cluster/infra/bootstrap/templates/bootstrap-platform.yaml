@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: ocp-appdev-quicklabs-platform
+  namespace: {{ .Values.argocd.namespace }}
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: ocp-appdev-quicklabs-platform
+  source:
+    repoURL: {{ .Values.gitops.repo | quote }}
+    targetRevision: {{ .Values.gitops.revision }}
+    path: automation/platform/bootstrap
+    helm:
+      valuesObject:
+        deployer:
+          domain: {{ .Values.deployer.domain }}
+          guid: {{ .Values.deployer.guid }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: openshift-operators
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
+      - ServerSideApply=true

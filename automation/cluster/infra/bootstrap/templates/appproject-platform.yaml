@@ -1,0 +1,25 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ocp-appdev-quicklabs-platform
+  namespace: {{ .Values.argocd.namespace }}
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec:
+  description: Platform operator subscriptions for OpenShift App Dev Quick Labs
+  sourceRepos:
+    - {{ .Values.gitops.repo | quote }}
+  destinations:
+    - namespace: openshift-operators
+      server: https://kubernetes.default.svc
+    - namespace: openshift-devspaces
+      server: https://kubernetes.default.svc
+    - namespace: redhat-developer-hub
+      server: https://kubernetes.default.svc
+    - namespace: redhat-ods-operator
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+    - group: operators.coreos.com
+      kind: "*"

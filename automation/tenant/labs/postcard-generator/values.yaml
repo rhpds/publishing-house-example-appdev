@@ -1,0 +1,52 @@
+# Values injected by the tenant bootstrap Application
+deployer:
+  domain: apps.cluster.example.com
+
+tenant:
+  name: user1
+  user:
+    name: user1
+
+# Container image -- pinned tag, never :latest
+image:
+  repository: quay.io/rhpds/postcard-generator
+  tag: v1.0
+  pullPolicy: IfNotPresent
+
+# Deployment configuration
+replicas: 1
+
+resources:
+  requests:
+    cpu: 100m
+    memory: 128Mi
+  limits:
+    cpu: 500m
+    memory: 256Mi
+
+# Flask application port
+containerPort: 8080
+
+# Route configuration
+route:
+  tls:
+    termination: edge
+    insecureEdgeTerminationPolicy: Redirect
+
+# Postcard destination cities
+destinations:
+  - name: Paris
+    country: France
+    greeting: "Bonjour from Paris!"
+  - name: Tokyo
+    country: Japan
+    greeting: "Konnichiwa from Tokyo!"
+  - name: New York
+    country: USA
+    greeting: "Hello from New York!"
+  - name: Sydney
+    country: Australia
+    greeting: "G'day from Sydney!"
+  - name: Cairo
+    country: Egypt
+    greeting: "Ahlan from Cairo!"

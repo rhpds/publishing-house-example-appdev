@@ -1,0 +1,13 @@
+# Values injected by AgnosticV ocp4_workload_gitops_bootstrap
+deployer:
+  domain: apps.cluster.example.com
+  guid: xxxxx
+
+# Git repository containing this automation
+gitops:
+  repo: https://github.com/rhpds/ocp-appdev-quicklabs-automation.git
+  revision: main
+
+# ArgoCD namespace
+argocd:
+  namespace: openshift-gitops

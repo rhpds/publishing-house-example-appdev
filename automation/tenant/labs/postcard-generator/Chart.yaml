@@ -1,0 +1,8 @@
+apiVersion: v2
+name: postcard-generator
+description: >-
+  Postcard Generator Flask application for OpenShift App Dev Quick Labs.
+  Deploys a Deployment, Service, Route, and destination ConfigMap.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

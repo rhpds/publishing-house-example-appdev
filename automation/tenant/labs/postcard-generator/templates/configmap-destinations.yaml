@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: postcard-destinations
+  labels:
+    app.kubernetes.io/name: postcard-generator
+    app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+    ocp-appdev-quicklabs/tenant: {{ .Values.tenant.name }}
+data:
+  destinations.json: |
+    {{ .Values.destinations | toJson }}

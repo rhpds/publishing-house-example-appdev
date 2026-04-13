@@ -1,0 +1,60 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: postcard-generator
+  labels:
+    app.kubernetes.io/name: postcard-generator
+    app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+    ocp-appdev-quicklabs/tenant: {{ .Values.tenant.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: postcard-generator
+      app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: postcard-generator
+        app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+        app.kubernetes.io/part-of: ocp-appdev-quicklabs
+        ocp-appdev-quicklabs/tenant: {{ .Values.tenant.name }}
+      annotations:
+        checksum/destinations: {{ include (print $.Template.BasePath "/configmap-destinations.yaml") . | sha256sum }}
+    spec:
+      containers:
+        - name: postcard-generator
+          image: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+          imagePullPolicy: {{ .Values.image.pullPolicy }}
+          ports:
+            - name: http
+              containerPort: {{ .Values.containerPort }}
+              protocol: TCP
+          env:
+            - name: FLASK_ENV
+              value: production
+            - name: DESTINATIONS_FILE
+              value: /config/destinations.json
+          volumeMounts:
+            - name: destinations
+              mountPath: /config
+              readOnly: true
+          livenessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 10
+            periodSeconds: 15
+          readinessProbe:
+            httpGet:
+              path: /healthz
+              port: http
+            initialDelaySeconds: 5
+            periodSeconds: 10
+          resources:
+            {{- toYaml .Values.resources | nindent 12 }}
+      volumes:
+        - name: destinations
+          configMap:
+            name: postcard-destinations

@@ -1,0 +1,8 @@
+* xref:index.adoc[Home]
+* xref:01-overview.adoc[Workshop overview]
+* xref:02-details.adoc[Workshop details]
+* xref:03-module-01-scaffold-with-developer-hub.adoc[Lab 1: Stamp your passport]
+* xref:04-module-02-live-coding-with-dev-spaces.adoc[Lab 2: Rewrite the postcard]
+* xref:05-module-03-build-and-deploy-with-pipelines.adoc[Lab 3: Ship it]
+* xref:06-module-04-gitops-and-drift-control.adoc[Lab 4: Steady state]
+* xref:07-module-05-smart-postcards-with-ai.adoc[Lab 5: Dear AI]

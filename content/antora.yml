@@ -1,0 +1,5 @@
+name: modules
+title: OpenShift App Dev Quick Labs
+version: main
+nav:
+  - modules/ROOT/nav.adoc

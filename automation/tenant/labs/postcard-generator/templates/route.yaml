@@ -1,0 +1,21 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  name: postcard-generator
+  labels:
+    app.kubernetes.io/name: postcard-generator
+    app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+    ocp-appdev-quicklabs/tenant: {{ .Values.tenant.name }}
+spec:
+  host: postcard-{{ .Values.tenant.name }}.{{ .Values.deployer.domain }}
+  to:
+    kind: Service
+    name: postcard-generator
+    weight: 100
+  port:
+    targetPort: http
+  tls:
+    termination: {{ .Values.route.tls.termination }}
+    insecureEdgeTerminationPolicy: {{ .Values.route.tls.insecureEdgeTerminationPolicy }}
+  wildcardPolicy: None

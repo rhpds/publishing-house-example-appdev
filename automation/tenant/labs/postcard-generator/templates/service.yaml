@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: postcard-generator
+  labels:
+    app.kubernetes.io/name: postcard-generator
+    app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+    ocp-appdev-quicklabs/tenant: {{ .Values.tenant.name }}
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: postcard-generator
+    app.kubernetes.io/instance: {{ .Values.tenant.name }}-postcard-generator
+  ports:
+    - name: http
+      port: 8080
+      targetPort: http
+      protocol: TCP

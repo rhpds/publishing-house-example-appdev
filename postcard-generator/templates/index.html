@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Postcard Generator</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+  <!-- Leaflet CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+        integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+        crossorigin="">
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/postcards.css') }}">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <h1 class="site-title">Postcard Generator</h1>
+      <p class="site-subtitle">Discover the world, one postcard at a time</p>
+    </div>
+  </header>
+
+  <main class="main-content">
+
+    <!-- Input section -->
+    <section class="input-section">
+      <div class="input-card">
+        <label for="sender-name" class="input-label">Your Name</label>
+        <input
+          type="text"
+          id="sender-name"
+          class="sender-input"
+          placeholder="Enter your name..."
+          maxlength="40"
+          autocomplete="off"
+        >
+        <button id="generate-btn" class="generate-btn">
+          <span class="btn-text">Generate Postcard</span>
+          <span class="btn-icon">&#9992;</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- Postcard display (hidden until generated) -->
+    <section id="postcard-section" class="postcard-section hidden">
+      <div id="postcard" class="postcard">
+        <div class="postcard-border">
+          <div class="postcard-inner">
+
+            <!-- Left: visual design area -->
+            <div class="postcard-visual" id="postcard-visual">
+              <div class="postcard-overlay"></div>
+              <div class="postcard-content">
+                <div class="stamp" id="postcard-stamp">AIR MAIL</div>
+                <p class="postcard-greeting" id="postcard-greeting">Greetings from</p>
+                <h2 class="postcard-destination" id="postcard-destination"></h2>
+                <p class="postcard-country" id="postcard-country"></p>
+                <div class="postcard-divider"></div>
+                <p class="postcard-message" id="postcard-message"></p>
+                <p class="postcard-sender" id="postcard-sender"></p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div class="map-container">
+        <h3 class="map-title">
+          <span class="map-pin">&#128205;</span>
+          <span id="map-label">Destination</span>
+        </h3>
+        <div id="map" class="map"></div>
+      </div>
+
+      <!-- Generate another -->
+      <div class="again-row">
+        <button id="again-btn" class="generate-btn again-btn">
+          <span class="btn-text">Another Destination</span>
+          <span class="btn-icon">&#9992;</span>
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for <strong>OpenShift App Dev Quick Labs</strong></p>
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+          integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+          crossorigin=""></script>
+
+  <!-- App JS -->
+  <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>

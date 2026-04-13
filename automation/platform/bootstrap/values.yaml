@@ -1,0 +1,19 @@
+# Values injected by the infra bootstrap Application
+deployer:
+  domain: apps.cluster.example.com
+  guid: xxxxx
+
+# Operator channels -- pinned to known-good versions
+operators:
+  devspaces:
+    enabled: true
+    channel: stable
+    startingCSV: devspacesoperator.v3.19.0
+  developerHub:
+    enabled: true
+    channel: fast-1.4
+    startingCSV: rhdh-operator.v1.4.0
+  openshiftAI:
+    enabled: true
+    channel: fast
+    startingCSV: rhods-operator.v2.19.0

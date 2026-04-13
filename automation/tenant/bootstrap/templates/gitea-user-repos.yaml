@@ -1,0 +1,89 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: gitea-setup-{{ .Values.tenant.name }}
+  namespace: {{ include "tenant.namespace" . }}
+  labels:
+    {{- include "tenant.labels" . | nindent 4 }}
+  annotations:
+    argocd.argoproj.io/hook: PostSync
+    argocd.argoproj.io/hook-delete-policy: HookSucceeded
+spec:
+  backoffLimit: 3
+  ttlSecondsAfterFinished: 300
+  template:
+    metadata:
+      labels:
+        {{- include "tenant.labels" . | nindent 8 }}
+    spec:
+      restartPolicy: OnFailure
+      serviceAccountName: default
+      containers:
+        - name: gitea-setup
+          image: registry.access.redhat.com/ubi9/ubi-minimal:9.5
+          command:
+            - /bin/bash
+            - -c
+            - |
+              set -euo pipefail
+
+              GITEA_URL="https://{{ .Values.gitea.host }}"
+              ADMIN_USER="{{ .Values.gitea.adminUser }}"
+              ADMIN_PASS="${GITEA_ADMIN_PASSWORD}"
+              TENANT_USER="{{ .Values.tenant.user.name }}"
+              TENANT_PASS="${TENANT_PASSWORD}"
+
+              # Create user
+              curl -sf -X POST "${GITEA_URL}/api/v1/admin/users" \
+                -u "${ADMIN_USER}:${ADMIN_PASS}" \
+                -H "Content-Type: application/json" \
+                -d "{
+                  \"username\": \"${TENANT_USER}\",
+                  \"password\": \"${TENANT_PASS}\",
+                  \"email\": \"${TENANT_USER}@example.com\",
+                  \"must_change_password\": false
+                }" || echo "User may already exist, continuing..."
+
+              {{- range .Values.gitea.repos }}
+              # Create and seed repo: {{ .name }}
+              curl -sf -X POST "${GITEA_URL}/api/v1/user/repos" \
+                -u "${TENANT_USER}:${TENANT_PASS}" \
+                -H "Content-Type: application/json" \
+                -d "{
+                  \"name\": \"{{ .name }}\",
+                  \"description\": \"{{ .description }}\",
+                  \"private\": false,
+                  \"auto_init\": false
+                }" || echo "Repo {{ .name }} may already exist, continuing..."
+
+              # Mirror source content
+              curl -sf -X POST "${GITEA_URL}/api/v1/repos/migrate" \
+                -u "${ADMIN_USER}:${ADMIN_PASS}" \
+                -H "Content-Type: application/json" \
+                -d "{
+                  \"clone_addr\": \"{{ .sourceUrl }}\",
+                  \"repo_name\": \"{{ .name }}\",
+                  \"repo_owner\": \"${TENANT_USER}\",
+                  \"mirror\": false
+                }" || echo "Mirror for {{ .name }} may already exist, continuing..."
+              {{- end }}
+
+              echo "Gitea setup complete for ${TENANT_USER}"
+          env:
+            - name: GITEA_ADMIN_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.gitea.adminPasswordSecret }}
+                  key: password
+            - name: TENANT_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: {{ .Values.tenant.name }}-credentials
+                  key: password
+          resources:
+            requests:
+              cpu: 50m
+              memory: 64Mi
+            limits:
+              cpu: 200m
+              memory: 128Mi

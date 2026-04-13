@@ -2,7 +2,7 @@ runtime:
   fetch: true
 
 site:
-  title: "CHANGEME — Workshop Title"
+  title: "OpenShift App Dev Quick Labs"
   start_page: modules::index.adoc
 
 content:

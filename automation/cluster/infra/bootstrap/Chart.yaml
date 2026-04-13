@@ -1,0 +1,8 @@
+apiVersion: v2
+name: ocp-appdev-quicklabs-infra-bootstrap
+description: >-
+  Cluster infrastructure bootstrap for OpenShift App Dev Quick Labs.
+  Creates ArgoCD AppProjects and spawns the platform bootstrap Application.
+type: application
+version: 0.1.0
+appVersion: "1.0.0"

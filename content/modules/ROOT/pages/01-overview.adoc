@@ -1,0 +1,79 @@
+= Workshop overview
+include::partial$_attributes.adoc[]
+:toc:
+:toc-placement: preamble
+:icons: font
+
+== What this is about
+
+Modern application development on OpenShift is fast, integrated, and fun. These labs prove it.
+
+You will build and evolve the *Postcard Generator*, a web app that creates retro travel-poster-style postcards from destinations around the world. Along the way, you will use five key OpenShift developer tools, each featured in its own standalone lab.
+
+The point is not to learn everything about each tool. The point is to experience how easy and seamless the developer workflow is on OpenShift, from idea to running app to AI-enhanced feature, in minutes rather than days.
+
+== What you will accomplish
+
+By the end of these labs, you will have hands-on experience with:
+
+* Scaffolding a new application from a golden path template using Red Hat Developer Hub
+* Modifying running code in real time with OpenShift Dev Spaces and live reload
+* Triggering an automated CI/CD pipeline with a single `git push` using OpenShift Pipelines
+* Detecting and correcting configuration drift using OpenShift GitOps (Argo CD)
+* Integrating AI-generated content into your app via OpenShift AI model-as-a-service
+
+*Technical outcome*: You will see how OpenShift's developer platform connects scaffolding, coding, building, deploying, and enhancing into one smooth workflow.
+
+*The takeaway*: This is how organizations ship software faster without sacrificing guardrails.
+
+== Who this is for
+
+These labs are designed for:
+
+* Developers exploring OpenShift for the first time
+* Platform engineers who want to see the developer experience they are enabling
+* Architects evaluating Red Hat's application platform
+* Anyone technical and curious about what modern app dev on OpenShift looks like
+
+*Experience level*: Beginner Plus. You know containers and Kubernetes basics. You have used a terminal. You do not need to be a software engineer.
+
+== The app: Postcard Generator
+
+The Postcard Generator is a Python Flask web app with a simple frontend. It picks a random destination from a curated list and renders a stylized postcard with:
+
+* A retro travel-poster color scheme
+* A fun destination tagline
+* An interactive map showing the location (Leaflet.js)
+* Your name as the sender
+
+It is lightweight, visually engaging, and designed to make each lab feel rewarding.
+
+In Lab 5, you upgrade the app to generate personalized postcard messages using an AI model, replacing the canned taglines with something creative and unique every time.
+
+== How the labs connect
+
+Each lab is *standalone*. You can start with any one and skip the rest.
+
+If you do them in order, they tell a natural story:
+
+. *Scaffold* the app (Developer Hub)
+. *Code* a change (Dev Spaces)
+. *Build and deploy* the change (Pipelines)
+. *Manage* the deployment (GitOps)
+. *Enhance* the app with AI (OpenShift AI)
+
+But this ordering is optional. Every lab starts from a pre-provisioned environment that works independently.
+
+== Common questions
+
+*"Do I need to do all five labs?"*
+-- No. Each lab stands alone. Pick the ones that interest you.
+
+*"Is this training material?"*
+-- No. These are quick, engaging demos designed to show what is possible. For deeper training, check out the follow-up resources in the details section.
+
+*"What if I get stuck?"*
+-- Each lab includes verification checkpoints and troubleshooting tips. The environment is pre-provisioned, so there is very little that can go wrong.
+
+*"Can I share what I build?"*
+-- Yes. The postcards are fun to screenshot and share.

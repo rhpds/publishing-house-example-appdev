@@ -1,0 +1,54 @@
+# Values injected by AgnosticV tenant workload
+deployer:
+  domain: apps.cluster.example.com
+  guid: xxxxx
+
+# Tenant identity
+tenant:
+  name: user1
+  user:
+    name: user1
+    password: ""  # Injected at deploy time, never committed
+
+# Git repository for this automation
+gitops:
+  repo: https://github.com/rhpds/ocp-appdev-quicklabs-automation.git
+  revision: main
+
+# ArgoCD
+argocd:
+  namespace: openshift-gitops
+  project: ocp-appdev-quicklabs-tenants
+
+# Gitea configuration
+gitea:
+  host: gitea.example.com
+  adminUser: gitea-admin
+  adminPasswordSecret: gitea-admin-credentials
+  repos:
+    - name: postcard-generator
+      description: Postcard Generator Flask application
+      sourceUrl: https://github.com/rhpds/postcard-generator-source.git
+
+# Lab feature flags -- each tenant enables only the labs it needs
+labs:
+  postcardGenerator:
+    enabled: true
+  pipelines:
+    enabled: false
+  gitops:
+    enabled: false
+  ai:
+    enabled: false
+    modelEndpoint: ""
+    modelApiKeySecret: ""
+  devhub:
+    enabled: false
+  devspaces:
+    enabled: false
+
+# Subchart values override
+postcard-generator:
+  image:
+    repository: quay.io/rhpds/postcard-generator
+    tag: v1.0

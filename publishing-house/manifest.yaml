@@ -3,66 +3,97 @@
 # The orchestrator reads and updates it every session.
 
 project:
-  name: ""          # Project name (e.g., "Getting Started with OpenShift")
-  id: ""            # Short identifier (e.g., "ocp-getting-started")
-  created: ""       # ISO 8601 date (YYYY-MM-DD)
-  owner: ""         # GitHub username of project owner
-  type: ""          # workshop | demo
-  autonomy: supervised  # supervised | semi | full
+  name: "OpenShift App Dev Quick Labs — Postcard Generator"
+  id: "ocp-appdev-quicklabs-postcard"
+  created: "2026-04-13"
+  owner: "stencell"
+  type: "workshop"
+  autonomy: supervised
 
 lifecycle:
-  current_phase: intake       # DEPRECATED — use individual phase statuses instead
+  current_phase: writing
   phases:
     intake:
-      status: pending       # pending | in_progress | completed | skipped
-      completed_at: null
-      assignees: []          # GitHub usernames working on this phase
-      artifacts: []
+      status: completed
+      completed_at: "2026-04-13"
+      assignees: []
+      artifacts:
+        - publishing-house/spec/design.md
+        - publishing-house/spec/modules/module-01-scaffold-with-developer-hub.md
+        - publishing-house/spec/modules/module-02-live-coding-with-dev-spaces.md
+        - publishing-house/spec/modules/module-03-build-and-deploy-with-pipelines.md
+        - publishing-house/spec/modules/module-04-gitops-and-drift-control.md
+        - publishing-house/spec/modules/module-05-smart-postcards-with-ai.md
     vetting:
-      status: pending
+      status: skipped
       completed_at: null
       assignees: []
-      result: null           # approved | revise | rejected
+      result: null
       rcars_response: null
     spec_refinement:
-      status: pending
+      status: skipped
       completed_at: null
       assignees: []
       artifacts: []
     approval:
-      status: pending
-      approved_by: null
-      completed_at: null
+      status: completed
+      approved_by: stencell
+      completed_at: "2026-04-13"
     writing:
       status: pending
       assignees: []
-      modules: []            # Populated during intake
-      # Example module entry:
-      # - id: "module-01"
-      #   title: "Module 1: Overview"
-      #   status: pending    # pending | in_progress | drafted | approved
-      #   content_path: null
-      #   review_file: null
+      modules:
+        - id: "module-01"
+          title: "Stamp Your Passport: Scaffold with Developer Hub"
+          status: drafted
+          content_path: content/modules/ROOT/pages/03-module-01-scaffold-with-developer-hub.adoc
+          review_file: null
+        - id: "module-02"
+          title: "Rewrite the Postcard: Live Coding with Dev Spaces"
+          status: drafted
+          content_path: content/modules/ROOT/pages/04-module-02-live-coding-with-dev-spaces.adoc
+          review_file: null
+        - id: "module-03"
+          title: "Ship It: Build and Deploy with Pipelines"
+          status: drafted
+          content_path: content/modules/ROOT/pages/05-module-03-build-and-deploy-with-pipelines.adoc
+          review_file: null
+        - id: "module-04"
+          title: "Steady State: GitOps and Drift Control"
+          status: drafted
+          content_path: content/modules/ROOT/pages/06-module-04-gitops-and-drift-control.adoc
+          review_file: null
+        - id: "module-05"
+          title: "Dear AI: Smart Postcards with OpenShift AI"
+          status: drafted
+          content_path: content/modules/ROOT/pages/07-module-05-smart-postcards-with-ai.adoc
+          review_file: null
     editing:
       status: pending
       completed_at: null
       assignees: []
       artifacts: []
     automation:
-      status: pending
+      status: in_progress
       assignees: []
-      needs_automation: null  # true | false — asked during intake
-      catalog_path: null      # AgnosticV catalog path
-      agv_repo: null          # AgnosticV git repo
-      agv_branch: null        # AgnosticV branch
+      needs_automation: true
+      catalog_path: "agd_v2/ocp-appdev-quicklabs-*"
+      agv_repo: "/Users/nstephan/devel/git/agnosticv"
+      agv_branch: "publishing-house-demo"
       substeps:
-        catalog_item: pending       # AgnosticV catalog configuration
-        requirements: pending       # Automation requirements (reviewable scope document)
-        automation_code: pending    # Ansible collection or GitOps repo
-        testing: pending            # Deploy and verify automation works
-        e2e_checks: deferred        # End-to-end validation (future)
-      automation_files: []    # List of automation artifact paths in this repo
-    code_security_review:            # Code review (automation) + security review (content & automation)
+        catalog_item: completed
+        requirements: completed
+        automation_code: completed
+        testing: pending
+        e2e_checks: deferred
+      automation_files:
+        - agd_v2/ocp-appdev-quicklabs-cluster/common.yaml
+        - agd_v2/ocp-appdev-quicklabs-lab01-devhub/common.yaml
+        - agd_v2/ocp-appdev-quicklabs-lab02-devspaces/common.yaml
+        - agd_v2/ocp-appdev-quicklabs-lab03-pipelines/common.yaml
+        - agd_v2/ocp-appdev-quicklabs-lab04-gitops/common.yaml
+        - agd_v2/ocp-appdev-quicklabs-lab05-ai/common.yaml
+    code_security_review:
       status: pending
       completed_at: null
       assignees: []
@@ -77,6 +108,6 @@ lifecycle:
       completed_at: null
 
 integrations:
-  rcars_api: null            # URL to RCARS REST API (e.g., https://rcars.apps.example.com/api/v1)
-  showroom_repo: null        # URL to public Showroom repo (set when content moves)
-  automation_repo: null      # URL to automation repo (set when created)
+  rcars_api: null
+  showroom_repo: null
+  automation_repo: null

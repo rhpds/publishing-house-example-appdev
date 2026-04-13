@@ -1,0 +1,242 @@
+[
+  {
+    "name": "Marrakech",
+    "country": "Morocco",
+    "lat": 31.6295,
+    "lng": -7.9811,
+    "tagline": "Lose yourself in a labyrinth of spices and starlight",
+    "colors": { "primary": "#C1440E", "accent": "#F5A623" }
+  },
+  {
+    "name": "Kyoto",
+    "country": "Japan",
+    "lat": 35.0116,
+    "lng": 135.7681,
+    "tagline": "Where bamboo whispers secrets to the wind",
+    "colors": { "primary": "#8B4513", "accent": "#E8927C" }
+  },
+  {
+    "name": "Reykjavik",
+    "country": "Iceland",
+    "lat": 64.1466,
+    "lng": -21.9426,
+    "tagline": "Fire and ice never looked this good",
+    "colors": { "primary": "#2C3E50", "accent": "#5DADE2" }
+  },
+  {
+    "name": "Buenos Aires",
+    "country": "Argentina",
+    "lat": -34.6037,
+    "lng": -58.3816,
+    "tagline": "Tango until the sun forgets to set",
+    "colors": { "primary": "#6C3483", "accent": "#F4D03F" }
+  },
+  {
+    "name": "Istanbul",
+    "country": "Turkey",
+    "lat": 41.0082,
+    "lng": 28.9784,
+    "tagline": "Two continents, one magnificent obsession",
+    "colors": { "primary": "#1A5276", "accent": "#E74C3C" }
+  },
+  {
+    "name": "Havana",
+    "country": "Cuba",
+    "lat": 23.1136,
+    "lng": -82.3666,
+    "tagline": "Frozen in time, bursting with life",
+    "colors": { "primary": "#148F77", "accent": "#F39C12" }
+  },
+  {
+    "name": "Jaipur",
+    "country": "India",
+    "lat": 26.9124,
+    "lng": 75.7873,
+    "tagline": "The pink city that dreams in technicolor",
+    "colors": { "primary": "#CB4335", "accent": "#F5B041" }
+  },
+  {
+    "name": "Dubrovnik",
+    "country": "Croatia",
+    "lat": 42.6507,
+    "lng": 18.0944,
+    "tagline": "Stone walls guard the bluest secret in Europe",
+    "colors": { "primary": "#1B4F72", "accent": "#E59866" }
+  },
+  {
+    "name": "Luang Prabang",
+    "country": "Laos",
+    "lat": 19.8843,
+    "lng": 102.1347,
+    "tagline": "Where monks walk at dawn and time takes a nap",
+    "colors": { "primary": "#D4AC0D", "accent": "#7D3C98" }
+  },
+  {
+    "name": "Cartagena",
+    "country": "Colombia",
+    "lat": 10.3910,
+    "lng": -75.5364,
+    "tagline": "Colonial walls, Caribbean soul",
+    "colors": { "primary": "#E74C3C", "accent": "#2ECC71" }
+  },
+  {
+    "name": "Petra",
+    "country": "Jordan",
+    "lat": 30.3285,
+    "lng": 35.4444,
+    "tagline": "Carved from rose-red cliffs by dreamers and time",
+    "colors": { "primary": "#A93226", "accent": "#D4A574" }
+  },
+  {
+    "name": "Hallstatt",
+    "country": "Austria",
+    "lat": 47.5622,
+    "lng": 13.6493,
+    "tagline": "A village so perfect, it had to be real",
+    "colors": { "primary": "#1E8449", "accent": "#85C1E9" }
+  },
+  {
+    "name": "Fez",
+    "country": "Morocco",
+    "lat": 34.0181,
+    "lng": -5.0078,
+    "tagline": "Nine thousand alleys of pure enchantment",
+    "colors": { "primary": "#784212", "accent": "#2E86C1" }
+  },
+  {
+    "name": "Valparaiso",
+    "country": "Chile",
+    "lat": -33.0472,
+    "lng": -71.6127,
+    "tagline": "Street art capital perched on rainbow hills",
+    "colors": { "primary": "#D35400", "accent": "#8E44AD" }
+  },
+  {
+    "name": "Zanzibar",
+    "country": "Tanzania",
+    "lat": -6.1659,
+    "lng": 39.2026,
+    "tagline": "Spice-scented breezes and turquoise infinities",
+    "colors": { "primary": "#117A65", "accent": "#F1C40F" }
+  },
+  {
+    "name": "Bruges",
+    "country": "Belgium",
+    "lat": 51.2094,
+    "lng": 3.2247,
+    "tagline": "Chocolate, canals, and medieval daydreams",
+    "colors": { "primary": "#6E2C00", "accent": "#D4A574" }
+  },
+  {
+    "name": "Queenstown",
+    "country": "New Zealand",
+    "lat": -45.0312,
+    "lng": 168.6626,
+    "tagline": "Adventure capital at the edge of middle earth",
+    "colors": { "primary": "#1A5276", "accent": "#27AE60" }
+  },
+  {
+    "name": "Chefchaouen",
+    "country": "Morocco",
+    "lat": 35.1688,
+    "lng": -5.2636,
+    "tagline": "An entire city dipped in the sky",
+    "colors": { "primary": "#2471A3", "accent": "#F0E68C" }
+  },
+  {
+    "name": "Cusco",
+    "country": "Peru",
+    "lat": -13.5319,
+    "lng": -71.9675,
+    "tagline": "Inca heartbeat still echoing through stone streets",
+    "colors": { "primary": "#922B21", "accent": "#F4D03F" }
+  },
+  {
+    "name": "Tallinn",
+    "country": "Estonia",
+    "lat": 59.4370,
+    "lng": 24.7536,
+    "tagline": "Medieval towers meet digital revolution",
+    "colors": { "primary": "#2C3E50", "accent": "#E67E22" }
+  },
+  {
+    "name": "Hoi An",
+    "country": "Vietnam",
+    "lat": 15.8801,
+    "lng": 108.3380,
+    "tagline": "Lanterns light the way to a thousand flavors",
+    "colors": { "primary": "#D4AC0D", "accent": "#E74C3C" }
+  },
+  {
+    "name": "Santorini",
+    "country": "Greece",
+    "lat": 36.3932,
+    "lng": 25.4615,
+    "tagline": "White walls, blue domes, infinite sunsets",
+    "colors": { "primary": "#1F618D", "accent": "#FFFFFF" }
+  },
+  {
+    "name": "Oaxaca",
+    "country": "Mexico",
+    "lat": 17.0732,
+    "lng": -96.7266,
+    "tagline": "Mezcal dreams and mole-soaked midnights",
+    "colors": { "primary": "#7D3C98", "accent": "#F39C12" }
+  },
+  {
+    "name": "Kotor",
+    "country": "Montenegro",
+    "lat": 42.4247,
+    "lng": 18.7712,
+    "tagline": "A fjord, a fortress, and a thousand cats",
+    "colors": { "primary": "#1B4F72", "accent": "#E8927C" }
+  },
+  {
+    "name": "Siem Reap",
+    "country": "Cambodia",
+    "lat": 13.3671,
+    "lng": 103.8448,
+    "tagline": "Temple kingdoms swallowed by jungle and wonder",
+    "colors": { "primary": "#784212", "accent": "#27AE60" }
+  },
+  {
+    "name": "Cape Town",
+    "country": "South Africa",
+    "lat": -33.9249,
+    "lng": 18.4241,
+    "tagline": "Where mountains meet the ocean at the world's edge",
+    "colors": { "primary": "#1A5276", "accent": "#F5B041" }
+  },
+  {
+    "name": "Tbilisi",
+    "country": "Georgia",
+    "lat": 41.7151,
+    "lng": 44.8271,
+    "tagline": "Wine older than history, hospitality beyond measure",
+    "colors": { "primary": "#8B4513", "accent": "#C0392B" }
+  },
+  {
+    "name": "Lofoten Islands",
+    "country": "Norway",
+    "lat": 68.2340,
+    "lng": 14.5630,
+    "tagline": "Arctic drama painted in fjords and fishing villages",
+    "colors": { "primary": "#154360", "accent": "#E74C3C" }
+  },
+  {
+    "name": "Ghent",
+    "country": "Belgium",
+    "lat": 51.0543,
+    "lng": 3.7174,
+    "tagline": "The best-kept medieval secret in all of Europe",
+    "colors": { "primary": "#6E2C00", "accent": "#2E86C1" }
+  },
+  {
+    "name": "Medellin",
+    "country": "Colombia",
+    "lat": 6.2476,
+    "lng": -75.5658,
+    "tagline": "City of eternal spring and reinvention",
+    "colors": { "primary": "#196F3D", "accent": "#F4D03F" }
+  }
+]

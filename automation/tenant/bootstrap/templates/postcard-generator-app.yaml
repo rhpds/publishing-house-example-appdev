@@ -1,0 +1,37 @@
+{{- if .Values.labs.postcardGenerator.enabled }}
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: {{ .Values.tenant.name }}-postcard-generator
+  namespace: {{ .Values.argocd.namespace }}
+  labels:
+    {{- include "tenant.labels" . | nindent 4 }}
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: {{ .Values.argocd.project }}
+  source:
+    repoURL: {{ .Values.gitops.repo | quote }}
+    targetRevision: {{ .Values.gitops.revision }}
+    path: automation/tenant/labs/postcard-generator
+    helm:
+      valuesObject:
+        deployer:
+          domain: {{ .Values.deployer.domain }}
+        tenant:
+          name: {{ .Values.tenant.name }}
+          user:
+            name: {{ .Values.tenant.user.name }}
+        image:
+          repository: {{ index .Values "postcard-generator" "image" "repository" }}
+          tag: {{ index .Values "postcard-generator" "image" "tag" }}
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: {{ include "tenant.namespace" . }}
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=false
+{{- end }}

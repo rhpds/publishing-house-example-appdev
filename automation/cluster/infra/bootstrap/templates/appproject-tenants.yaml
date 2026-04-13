@@ -1,0 +1,28 @@
+apiVersion: argoproj.io/v1alpha1
+kind: AppProject
+metadata:
+  name: ocp-appdev-quicklabs-tenants
+  namespace: {{ .Values.argocd.namespace }}
+  labels:
+    app.kubernetes.io/part-of: ocp-appdev-quicklabs
+spec:
+  description: Tenant resources for OpenShift App Dev Quick Labs
+  sourceRepos:
+    - {{ .Values.gitops.repo | quote }}
+  destinations:
+    - namespace: "*"
+      server: https://kubernetes.default.svc
+  clusterResourceWhitelist:
+    - group: ""
+      kind: Namespace
+  namespaceResourceWhitelist:
+    - group: ""
+      kind: "*"
+    - group: apps
+      kind: Deployment
+    - group: route.openshift.io
+      kind: Route
+    - group: tekton.dev
+      kind: "*"
+    - group: argoproj.io
+      kind: Application
