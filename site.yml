@@ -25,6 +25,8 @@ antora:
   extensions:
   - require: ./content/lib/dev-mode.js
     enabled: false
+  - require: '@antora/lunr-extension'
+    index_by_heading: true
 
 output:
   dir: ./www
