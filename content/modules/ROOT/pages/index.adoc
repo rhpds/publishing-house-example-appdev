@@ -1,45 +1,5 @@
-= OpenShift App Dev Quick Labs
-include::partial$_attributes.adoc[]
+= My Project
 
-Welcome to the OpenShift App Dev Quick Labs. You are about to build, ship, and enhance a fun web application, the Postcard Generator, using Red Hat OpenShift and its developer tools.
+This project was created with the RHDP Publishing House template.
 
-== What you will build
-
-The Postcard Generator is a web app that creates stylized digital postcards from destinations around the world. Each postcard features a retro travel-poster design, an interactive map, and a personalized greeting. By the end of these labs, your app will even write its own postcard messages using AI.
-
-// TODO: Add screenshot of the Postcard Generator app
-image::postcard-generator-hero.png[The Postcard Generator app showing a retro-styled postcard from Tokyo with an interactive map,link=self,window=blank,width=700,title="The Postcard Generator"]
-
-== Pick your lab
-
-Each lab is standalone. Start with any one that interests you, or work through all five for the full journey from scaffold to AI.
-
-* *Lab 1: Stamp your passport* -- Scaffold the app from a golden path template using Red Hat Developer Hub
-* *Lab 2: Rewrite the postcard* -- Modify the app with live coding in OpenShift Dev Spaces
-* *Lab 3: Ship it* -- Push a code change and watch OpenShift Pipelines build and deploy it
-* *Lab 4: Steady state* -- See OpenShift GitOps detect and correct configuration drift
-* *Lab 5: Dear AI* -- Add AI-generated postcard messages using OpenShift AI
-
-== Before you start
-
-You should be comfortable with:
-
-* Using a terminal and running commands
-* Basic container and Kubernetes concepts
-* Navigating a web-based IDE
-
-Your lab environment is fully provisioned. No setup required.
-
-* OpenShift Console: {openshift_console_url}
-* Username: `{user}`
-* Password: `{password}`
-
-== Estimated time
-
-Each lab takes approximately *20 minutes*. The full set takes about *100 minutes*.
-
-Work at your own pace. Jump in wherever you like.
-
-== Let's go
-
-Click a module in the navigation to start your first lab.
+Run `/rhdp-publishing-house` in Claude Code to begin.

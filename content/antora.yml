@@ -1,5 +1,10 @@
 name: modules
-title: OpenShift App Dev Quick Labs
-version: main
+title: My Project
+version: ~
 nav:
   - modules/ROOT/nav.adoc
+
+asciidoc:
+  attributes:
+    experimental: true
+    page-pagination: true
