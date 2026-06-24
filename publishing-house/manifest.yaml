@@ -82,5 +82,3 @@ lifecycle:
 integrations:
   jira:
     enabled: false
-  rcars_api: null            # URL to RCARS REST API (e.g., https://rcars.apps.example.com/api/v1)
-  field_source_ci: null      # AgnosticV CI path for field_source mode (e.g., agd_v2/ocp-field-asset-cnv)
